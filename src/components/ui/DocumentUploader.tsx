@@ -15,42 +15,52 @@ export function DocumentUploader() {
         setProgress(0);
 
         try {
-            // Create FormData to upload through your server
-            const formData = new FormData();
-            formData.append("file", file);
-            formData.append("recordType", "Medical Record");
-            formData.append("description", "");
-
-            // Upload through your API route (which handles S3 internally)
-            const response = await fetch("/api/records/upload", {
+            // Step 1: Get presigned URL from your API
+            const response = await fetch("/api/records/upload-url", {
                 method: "POST",
-                body: formData,
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({
+                    fileName: file.name,
+                    fileType: file.type,
+                    fileSize: file.size,
+                    recordType: "Medical Record", // You can make this selectable
+                    description: "", // Optional
+                }),
             });
 
-            if (!response.ok) {
-                const error = await response.json();
-                throw new Error(error.error || "Upload failed");
-            }
+            if (!response.ok) throw new Error("Failed to get upload URL");
 
-            const result = await response.json();
+            const { uploadUrl, recordId, s3Key } = await response.json();
+
+            // Step 2: Upload directly to S3 using presigned URL
+            const uploadResponse = await fetch(uploadUrl, {
+                method: "PUT",
+                body: file,
+                headers: {
+                    "Content-Type": file.type,
+                },
+            });
+
+            if (!uploadResponse.ok) throw new Error("Upload failed");
+
+            // Step 3: Confirm upload (optional - to mark as complete)
+            await fetch("/api/records/confirm", {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify({ recordId }),
+            });
 
             alert("File uploaded successfully!");
             setProgress(100);
 
-            // Refresh records list
-            setTimeout(() => {
-                window.location.reload();
-            }, 500);
+            // Refresh records list if needed
+            window.location.reload();
         } catch (error) {
             console.error("Upload error:", error);
             alert("Upload failed: " + (error as Error).message);
         } finally {
             setUploading(false);
             setProgress(0);
-            // Reset file input
-            if (e.target) {
-                e.target.value = "";
-            }
         }
     };
 
