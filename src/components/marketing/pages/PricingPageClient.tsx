@@ -18,7 +18,7 @@ type Plan = {
 const plans: Plan[] = [
   {
     name: "Starter",
-    price: "99",
+    price: "4.99",
     description: "For solo providers getting started with modern, secure workflows.",
     features: [
       "Up to 500 patients",
@@ -39,7 +39,7 @@ const plans: Plan[] = [
   },
   {
     name: "Professional",
-    price: "249",
+    price: "7.99",
     description: "For growing practices that need speed, collaboration, and automation.",
     features: [
       "Up to 2,000 patients",
@@ -57,7 +57,7 @@ const plans: Plan[] = [
   },
   {
     name: "Enterprise",
-    price: "Custom",
+    price: "14.99",
     description: "For organizations with complex requirements, compliance, and scale.",
     features: [
       "Unlimited patients",
