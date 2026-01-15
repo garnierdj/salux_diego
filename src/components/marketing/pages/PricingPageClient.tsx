@@ -113,7 +113,7 @@ export default function PricingPageClient() {
               <span className="text-[#0066CC]"> Pricing</span>
             </h1>
             <p className="text-xl text-gray-600">
-              Start with a 7-day free trial. Upgrade anytime as your practice grows—no long-term contracts.
+              Upgrade anytime as your practice grows—no long-term contracts.
             </p>
             <p className="mt-4 text-sm text-gray-500">
               All plans include secure authentication, role-based access, and modern cloud infrastructure designed for healthcare workflows.
@@ -176,7 +176,7 @@ export default function PricingPageClient() {
                   }`}
                 >
                   <Link href="/register">
-                    {plan.price === "Custom" ? "Contact Sales" : "Start Free Trial"}
+                    {plan.price === "Custom" ? "Contact Sales" : "Create Account"}
                   </Link>
                 </Button>
 
@@ -232,4 +232,3 @@ export default function PricingPageClient() {
     </>
   );
 }
-
