@@ -34,3 +34,17 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Stripe Billing Setup
+
+To enable subscriptions and the billing portal, add the following environment variables:
+
+```
+STRIPE_SECRET_KEY=sk_live_or_test
+STRIPE_PRICE_STARTER=price_...
+STRIPE_PRICE_PRO=price_...
+STRIPE_PRICE_ENTERPRISE=price_...
+NEXT_PUBLIC_APP_URL=https://your-domain.com
+```
+
+Create a single Stripe product (Salux) with three recurring monthly prices (4.99, 7.99, 14.99), then copy the price IDs into the variables above.
