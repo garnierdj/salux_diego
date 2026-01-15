@@ -48,12 +48,12 @@ export default function HomePageClient() {
               >
                 <Button asChild size="lg" className="h-12 px-8 text-base bg-[#0066CC] hover:bg-[#0052A3]">
                   <Link href="/register">
-                    Start Free Trial <ArrowRight className="ml-2 w-4 h-4" />
+                    Create Account <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>
 
                 <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
-                  <Link href="/pricing">View Pricing</Link>
+                  <Link href="/register">View Pricing</Link>
                 </Button>
               </motion.div>
 
@@ -150,7 +150,7 @@ export default function HomePageClient() {
             <div className="inline-flex flex-col sm:flex-row items-center gap-4 rounded-2xl border border-gray-200 bg-white px-6 py-6 shadow-sm">
               <div className="text-left">
                 <p className="text-base font-semibold text-gray-900">Ready to get started?</p>
-                <p className="text-sm text-gray-600">Create your account in minutes and explore Salux with a 7-day free trial.</p>
+                <p className="text-sm text-gray-600">Create your account in minutes and explore Salux today.</p>
               </div>
               <Button asChild className="bg-[#0066CC] hover:bg-[#0052A3] h-11 px-6">
                 <Link href="/register">
@@ -164,4 +164,3 @@ export default function HomePageClient() {
     </>
   );
 }
-
