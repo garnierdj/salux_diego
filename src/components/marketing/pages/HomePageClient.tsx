@@ -53,7 +53,7 @@ export default function HomePageClient() {
                 </Button>
 
                 <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
-                  <Link href="/register">View Pricing</Link>
+                  <Link href="https://salux-diego.vercel.app/pricing">View Pricing</Link>
                 </Button>
               </motion.div>
 
