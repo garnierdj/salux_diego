@@ -1,81 +1,8 @@
 "use client";
 
 import * as React from "react";
-import Link from "next/link";
+import Script from "next/script";
 import { motion } from "framer-motion";
-import { Check, X } from "lucide-react";
-import { Button } from "@/components/ui/button";
-
-type Plan = {
-  name: string;
-  price: string;
-  description: string;
-  features: string[];
-  notIncluded: string[];
-  highlighted: boolean;
-};
-
-const plans: Plan[] = [
-  {
-    name: "Starter",
-    price: "4.99",
-    description: "For solo providers getting started with modern, secure workflows.",
-    features: [
-      "Up to 500 patients",
-      "Core scheduling",
-      "Electronic medical records (EMR)",
-      "Patient portal",
-      "Secure file uploads & storage",
-      "Email support",
-      "Mobile-friendly access",
-    ],
-    notIncluded: [
-      "Advanced analytics",
-      "Custom integrations",
-      "Priority support",
-      "White-label options",
-    ],
-    highlighted: false,
-  },
-  {
-    name: "Professional",
-    price: "7.99",
-    description: "For growing practices that need speed, collaboration, and automation.",
-    features: [
-      "Up to 2,000 patients",
-      "Advanced scheduling",
-      "Electronic medical records (EMR)",
-      "Patient portal",
-      "Billing & payments",
-      "Practice insights (basic analytics)",
-      "Priority email support",
-      "Mobile-friendly access",
-      "API access",
-    ],
-    notIncluded: ["Custom integrations", "White-label options"],
-    highlighted: true,
-  },
-  {
-    name: "Enterprise",
-    price: "14.99",
-    description: "For organizations with complex requirements, compliance, and scale.",
-    features: [
-      "Unlimited patients",
-      "Advanced scheduling",
-      "Electronic medical records (EMR)",
-      "Patient portal",
-      "Billing & payments",
-      "Advanced analytics & reporting",
-      "Custom integrations",
-      "24/7 support",
-      "API access",
-      "White-label options",
-      "Dedicated account manager",
-    ],
-    notIncluded: [],
-    highlighted: false,
-  },
-];
 
 const faqs = [
   {
@@ -99,6 +26,7 @@ const faqs = [
 export default function PricingPageClient() {
   return (
     <>
+      <Script async src="https://js.stripe.com/v3/pricing-table.js" />
       {/* Hero */}
       <section className="bg-gradient-to-br from-blue-50 to-white py-20">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -122,8 +50,9 @@ export default function PricingPageClient() {
         </div>
       </section>
 
-      {/* Pricing Cards */}
+      {/* Pricing Table */}
       <section className="py-20">
+<<<<<<< HEAD
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid md:grid-cols-3 gap-8">
             {plans.map((plan, index) => (
@@ -204,6 +133,13 @@ export default function PricingPageClient() {
               Need help choosing? Start with Professional—most practices upgrade as soon as they want billing, insights, and API access.
             </p>
           </div>
+=======
+        <div className="max-w-5xl mx-auto px-4 sm:px-6 lg:px-8">
+          <stripe-pricing-table
+            pricing-table-id="prctbl_1Sqk0eCKkTO5w5FCQugnrfMO"
+            publishable-key="pk_test_51SpiBWCKkTO5w5FCjAaAi8BPmgvv6XloqkpujxSFYUhvfosYazlX3hI0Eb2xMNgW5zfv62zqyjLJD0ZE2wP6jOmw00KWnMGPyU"
+          />
+>>>>>>> da01395 (stripe testing)
         </div>
       </section>
 
