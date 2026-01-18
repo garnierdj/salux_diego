@@ -1,4 +1,4 @@
-import type React from "react";
+import type * as React from "react";
 
 declare global {
   namespace JSX {
@@ -9,6 +9,8 @@ declare global {
       > & {
         "pricing-table-id": string;
         "publishable-key": string;
+        "client-reference-id"?: string;
+        "customer-email"?: string;
       };
     }
   }
