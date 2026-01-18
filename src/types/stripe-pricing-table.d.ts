@@ -1,6 +1,6 @@
-import * as React from "react";
+import type * as React from "react";
 
-declare global {
+declare module "react" {
   namespace JSX {
     interface IntrinsicElements {
       "stripe-pricing-table": React.DetailedHTMLProps<
@@ -13,6 +13,15 @@ declare global {
         "customer-email"?: string;
         "customer-session-client-secret"?: string;
       };
+    }
+  }
+}
+
+// Extra: por si tu build usa el namespace global JSX
+declare global {
+  namespace JSX {
+    interface IntrinsicElements {
+      "stripe-pricing-table": any;
     }
   }
 }
