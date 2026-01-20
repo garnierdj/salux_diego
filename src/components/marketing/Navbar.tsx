@@ -4,6 +4,13 @@ import * as React from "react";
 import Link from "next/link";
 import { Menu, X } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
+import {
+  SignedIn,
+  SignedOut,
+  SignInButton,
+  SignUpButton,
+  UserButton,
+} from "@clerk/clerk-react";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 
@@ -40,12 +47,19 @@ export default function Navbar() {
 
           {/* Desktop Auth Buttons */}
           <div className="hidden md:flex items-center gap-4">
-            <Button variant="ghost" asChild>
-              <Link href="/login">Login</Link>
-            </Button>
-            <Button className="bg-[#0066CC] hover:bg-[#0052A3]" asChild>
-              <Link href="/register">Get Started</Link>
-            </Button>
+            <SignedOut>
+              <SignInButton>
+                <Button variant="ghost">Login</Button>
+              </SignInButton>
+              <SignUpButton>
+                <Button className="bg-[#0066CC] hover:bg-[#0052A3]">
+                  Get Started
+                </Button>
+              </SignUpButton>
+            </SignedOut>
+            <SignedIn>
+              <UserButton afterSignOutUrl="/" />
+            </SignedIn>
           </div>
 
           {/* Mobile Menu Button */}
@@ -83,16 +97,30 @@ export default function Navbar() {
               ))}
 
               <div className="pt-4 space-y-2">
-                <Button variant="outline" className="w-full" asChild>
-                  <Link href="/login" onClick={() => setMobileMenuOpen(false)}>
-                    Login
-                  </Link>
-                </Button>
-                <Button className="w-full bg-[#0066CC] hover:bg-[#0052A3]" asChild>
-                  <Link href="/register" onClick={() => setMobileMenuOpen(false)}>
-                    Get Started
-                  </Link>
-                </Button>
+                <SignedOut>
+                  <SignInButton>
+                    <Button
+                      variant="outline"
+                      className="w-full"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Login
+                    </Button>
+                  </SignInButton>
+                  <SignUpButton>
+                    <Button
+                      className="w-full bg-[#0066CC] hover:bg-[#0052A3]"
+                      onClick={() => setMobileMenuOpen(false)}
+                    >
+                      Get Started
+                    </Button>
+                  </SignUpButton>
+                </SignedOut>
+                <SignedIn>
+                  <div className="flex justify-center">
+                    <UserButton afterSignOutUrl="/" />
+                  </div>
+                </SignedIn>
               </div>
             </div>
           </motion.div>
@@ -101,4 +129,3 @@ export default function Navbar() {
     </nav>
   );
 }
-
