@@ -1,13 +1,14 @@
 "use client";
 
 import React, { ReactNode, useMemo, useState, useEffect } from "react";
+import Link from "next/link";
+import { OrganizationSwitcher, UserButton } from "@clerk/nextjs";
 import {
     LayoutDashboard,
     Loader2,
     Stethoscope,
     SlidersHorizontal,
     RotateCcw,
-    LogOut,
     Plus,
     FileText,
     Download,
@@ -254,12 +255,20 @@ export default function DashboardClient({ user }: { user: User }) {
                         </Badge>
                     </div>
 
-                    <div className="flex items-center gap-2">
-                        <form action="/api/auth/signout" method="post">
-                            <Button size="sm" variant="outline" className="rounded-2xl">
-                                <LogOut className="h-4 w-4 mr-1" /> Logout
-                            </Button>
-                        </form>
+                    <div className="flex flex-wrap items-center gap-2">
+                        <OrganizationSwitcher
+                            appearance={{ elements: { trigger: "rounded-xl" } }}
+                        />
+                        <Button asChild size="sm" variant="outline" className="rounded-2xl">
+                            <Link href="/billing">Billing</Link>
+                        </Button>
+                        <Button asChild size="sm" variant="outline" className="rounded-2xl">
+                            <Link href="/profile">Profile</Link>
+                        </Button>
+                        <UserButton
+                            appearance={{ elements: { avatarBox: "h-9 w-9" } }}
+                            afterSignOutUrl="/"
+                        />
                     </div>
                 </div>
             </header>

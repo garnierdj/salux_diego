@@ -1,24 +1,32 @@
 // src/app/(app)/dashboard/page.tsx
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { auth, currentUser } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import DashboardClient from "./DashboardClient";
 
 export default async function DashboardPage() {
-    const session = await getServerSession(authOptions);
+    const { userId } = auth();
 
-    // If no session → redirect to login
-    if (!session || !session.user) {
-        redirect("/login");
+    // If no session → redirect to sign-in
+    if (!userId) {
+        redirect("/sign-in");
     }
 
-    // Normalize session.user into a fully defined object
+    const clerkUser = await currentUser();
+    if (!clerkUser) {
+        redirect("/sign-in");
+    }
+
+    const name = [clerkUser.firstName, clerkUser.lastName]
+        .filter(Boolean)
+        .join(" ")
+        .trim();
+
     const user = {
-        id: session.user.id!, // your NextAuth callback guarantees this
-        name: session.user.name ?? "",
-        email: session.user.email ?? "",
-        image: session.user.image ?? null,
+        id: clerkUser.id,
+        name: name || clerkUser.username || "User",
+        email: clerkUser.emailAddresses[0]?.emailAddress ?? "",
+        image: clerkUser.imageUrl ?? null,
     };
 
     return (
