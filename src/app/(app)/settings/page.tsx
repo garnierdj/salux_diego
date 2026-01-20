@@ -1,3 +1,5 @@
+"use client";
+
 import { CreateOrganization, OrganizationProfile } from "@clerk/nextjs";
 import { clerkAppearance } from "@/lib/clerkAppearance";
 

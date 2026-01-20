@@ -1,3 +1,5 @@
+"use client";
+
 import { PricingTable } from "@clerk/nextjs";
 import { clerkAppearance } from "@/lib/clerkAppearance";
 
