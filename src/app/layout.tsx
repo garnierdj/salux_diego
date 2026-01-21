@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { ClerkProvider } from "@clerk/nextjs";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
 
@@ -18,20 +19,19 @@ export const metadata: Metadata = {
 };
 
 export default function RootLayout({
-                                       children,
-                                   }: {
-    children: React.ReactNode;
+  children,
+}: {
+  children: React.ReactNode;
 }) {
-    return (
-        <html lang="en">
+  return (
+    <ClerkProvider>
+      <html lang="en">
         <body
-            className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
+          className={`${geistSans.variable} ${geistMono.variable} antialiased bg-white`}
         >
-        <div className="w-full min-h-screen">
-            {children}
-        </div>
+          <div className="w-full min-h-screen">{children}</div>
         </body>
-        </html>
-    );
+      </html>
+    </ClerkProvider>
+  );
 }
-
