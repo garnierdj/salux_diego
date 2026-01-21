@@ -10,7 +10,7 @@ import {
   SignInButton,
   SignUpButton,
   UserButton,
-} from "@clerk/clerk-react";
+} from "@clerk/nextjs";
 import Logo from "@/components/Logo";
 import { Button } from "@/components/ui/button";
 
