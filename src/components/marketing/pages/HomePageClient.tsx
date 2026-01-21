@@ -3,7 +3,17 @@
 import * as React from "react";
 import Link from "next/link";
 import { motion } from "framer-motion";
-import { ArrowRight, Shield, Zap, Cloud, FileText, Calendar, Users, Lock } from "lucide-react";
+import {
+  ArrowRight,
+  Shield,
+  Zap,
+  Cloud,
+  FileText,
+  Calendar,
+  Users,
+  Lock,
+} from "lucide-react";
+import { SignUpButton } from "@clerk/nextjs";
 import { Button } from "@/components/ui/button";
 
 export default function HomePageClient() {
@@ -46,11 +56,11 @@ export default function HomePageClient() {
                 transition={{ duration: 0.55, delay: 0.16 }}
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
-                <Button asChild size="lg" className="h-12 px-8 text-base bg-[#0066CC] hover:bg-[#0052A3]">
-                  <Link href="/register">
+                <SignUpButton mode="modal" asChild>
+                  <Button size="lg" className="h-12 px-8 text-base bg-[#0066CC] hover:bg-[#0052A3]">
                     Create Account <ArrowRight className="ml-2 w-4 h-4" />
-                  </Link>
-                </Button>
+                  </Button>
+                </SignUpButton>
 
                 <Button asChild variant="outline" size="lg" className="h-12 px-8 text-base">
                   <Link href="https://salux-diego.vercel.app/pricing">View Pricing</Link>
@@ -152,11 +162,11 @@ export default function HomePageClient() {
                 <p className="text-base font-semibold text-gray-900">Ready to get started?</p>
                 <p className="text-sm text-gray-600">Create your account in minutes and explore Salux today.</p>
               </div>
-              <Button asChild className="bg-[#0066CC] hover:bg-[#0052A3] h-11 px-6">
-                <Link href="/register">
+              <SignUpButton mode="modal" asChild>
+                <Button className="bg-[#0066CC] hover:bg-[#0052A3] h-11 px-6">
                   Create Account <ArrowRight className="ml-2 w-4 h-4" />
-                </Link>
-              </Button>
+                </Button>
+              </SignUpButton>
             </div>
           </div>
         </div>
