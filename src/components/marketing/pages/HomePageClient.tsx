@@ -47,7 +47,7 @@ export default function HomePageClient() {
                 className="flex flex-col sm:flex-row items-center justify-center gap-4"
               >
                 <Button asChild size="lg" className="h-12 px-8 text-base bg-[#0066CC] hover:bg-[#0052A3]">
-                  <Link href="/register">
+                  <Link href="/sign-up">
                     Create Account <ArrowRight className="ml-2 w-4 h-4" />
                   </Link>
                 </Button>
@@ -152,8 +152,8 @@ export default function HomePageClient() {
                 <p className="text-base font-semibold text-gray-900">Ready to get started?</p>
                 <p className="text-sm text-gray-600">Create your account in minutes and explore Salux today.</p>
               </div>
-              <Button asChild className="bg-[#0066CC] hover:bg-[#0052A3] h-11 px-6">
-                <Link href="/register">
+                <Button asChild className="bg-[#0066CC] hover:bg-[#0052A3] h-11 px-6">
+                <Link href="/sign-up">
                   Create Account <ArrowRight className="ml-2 w-4 h-4" />
                 </Link>
               </Button>

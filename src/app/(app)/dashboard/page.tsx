@@ -1,29 +1,36 @@
 // src/app/(app)/dashboard/page.tsx
 
-import { getServerSession } from "next-auth";
-import { authOptions } from "@/lib/auth";
+import { auth, clerkClient } from "@clerk/nextjs/server";
 import { redirect } from "next/navigation";
 import DashboardClient from "./DashboardClient";
 
 export default async function DashboardPage() {
-    const session = await getServerSession(authOptions);
+    const { userId } = await auth();
 
-    // If no session → redirect to login
-    if (!session || !session.user) {
-        redirect("/login");
+    // If no session → redirect to sign-in
+    if (!userId) {
+        redirect("/sign-in");
     }
 
-    // Normalize session.user into a fully defined object
+    // Fetch full user data from Clerk
+    const client = await clerkClient();
+    const clerkUser = await client.users.getUser(userId as string).catch(() => null);
+
     const user = {
-        id: session.user.id!, // your NextAuth callback guarantees this
-        name: session.user.name ?? "",
-        email: session.user.email ?? "",
-        image: session.user.image ?? null,
+        id: clerkUser?.id ?? (userId as string),
+        name: clerkUser?.firstName ?? clerkUser?.fullName ?? "",
+        email:
+            // Clerk stores primary email under `primaryEmailAddress.emailAddress` in newer versions
+            (clerkUser as any)?.primaryEmailAddress?.emailAddress ??
+            (clerkUser as any)?.emailAddresses?.[0]?.emailAddress ??
+            "",
+        image: (clerkUser as any)?.profileImageUrl ?? null,
     };
 
     return (
         <main className="min-h-screen w-full bg-slate-50 px-6 py-10">
             <div className="mx-auto max-w-6xl">
+                {/* DashboardClient expects a `user` prop with id/name/email/image */}
                 <DashboardClient user={user} />
             </div>
         </main>

@@ -1,18 +1,5 @@
-import NextAuth, { DefaultSession } from "next-auth";
+// This file previously contained NextAuth type augmentations.
+// NextAuth has been removed in favor of Clerk. Keep this file as a placeholder
+// in case type imports reference it; it no longer augments the NextAuth types.
 
-declare module "next-auth" {
-    interface Session {
-        user: {
-            id: string;
-            name: string | null;
-            email: string | null;
-            image?: string | null;
-        } & DefaultSession["user"];
-    }
-
-    interface User {
-        id: string;
-        name: string | null;
-        email: string | null;
-    }
-}
+export {};

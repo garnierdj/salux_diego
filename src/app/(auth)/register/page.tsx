@@ -1,14 +1,6 @@
-"use client";
+import { notFound } from "next/navigation";
 
-import React from "react";
-import { SignUp } from "@clerk/nextjs";
-
-export default function RegisterPage() {
-  return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-8">
-      <div className="w-full max-w-md">
-        <SignUp path="/register" routing="path" />
-      </div>
-    </div>
-  );
+export default function RegisterDeleted() {
+  // Route removed — return 404 so it's effectively gone
+  notFound();
 }

@@ -6,10 +6,10 @@ export default function MarketingPage() {
                 Your centralized health record and provider coordination hub.
             </p>
             <div className="flex gap-4">
-                <a href="/log-in" className="px-6 py-2 bg-black text-white rounded-lg">
+                <a href="/sign-in" className="px-6 py-2 bg-black text-white rounded-lg">
                     Log In
                 </a>
-                <a href="/register" className="px-6 py-2 border border-black rounded-lg">
+                <a href="/sign-up" className="px-6 py-2 border border-black rounded-lg">
                     Get Started
                 </a>
             </div>
